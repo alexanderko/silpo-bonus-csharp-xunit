@@ -4,7 +4,12 @@ namespace SilpoBonusCore
 {
     public class Check
     {
-        private List<Product> products = new List<Product>();
+        private List<Product> products;
+
+        public Check()
+        {
+            products = new List<Product>();
+        }
 
         public int GetTotalCost(){
             int totalCost = 0;
@@ -17,7 +22,7 @@ namespace SilpoBonusCore
             return totalCost;
         }
 
-        public void AddProduct(Product product){
+        internal void AddProduct(Product product){
             products.Add(product);
         }
     }
