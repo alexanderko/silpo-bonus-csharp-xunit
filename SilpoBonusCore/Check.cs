@@ -22,6 +22,10 @@ namespace SilpoBonusCore
             return totalCost;
         }
 
+        public int GetTotalPoints(){
+            return GetTotalCost() * 2;
+        }
+
         internal void AddProduct(Product product){
             products.Add(product);
         }
