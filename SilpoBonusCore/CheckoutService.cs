@@ -1,5 +1,12 @@
 namespace SilpoBonusCore
 {
+    public enum Category
+    {
+        Milk = 14,
+        Butter = 17,
+        Egg = 3
+    }
+
     public class CheckoutService
     {
         private Check check;
@@ -20,8 +27,16 @@ namespace SilpoBonusCore
         }
 
         public void UseOffer(GoodsOffer offer){
-            if(check.GetTotalCost() >= offer.MinCosts){
-                check.AddPoints(offer.Points);
+            FactorByCategoryOffer fb = offer as FactorByCategoryOffer;
+
+            if(fb != null){
+                int points = check.GetTotalCostByCategory(fb.FactorCategory);
+                check.
+            }
+            else{
+                if(check.GetTotalCost() >= offer.MinCosts){
+                    check.AddPoints(offer.Points);
+                }
             }
         }
     }
