@@ -20,7 +20,7 @@ namespace SilpoBonusCore.Tests
         }
 
         [Fact]
-        void CloseCheck_WithOneProduct(){
+        void CloseCheck__WithOneProduct(){
             checkoutService.OpenCheck();
 
             checkoutService.AddProduct(butter);
@@ -30,7 +30,7 @@ namespace SilpoBonusCore.Tests
         }
 
         [Fact]
-        void CloseCheck_WithTwoProduct(){
+        void CloseCheck__WithTwoProduct(){
             checkoutService.OpenCheck();
 
             checkoutService.AddProduct(butter);
@@ -42,7 +42,7 @@ namespace SilpoBonusCore.Tests
         }
 
         [Fact]
-        void AddProduct_InCloseCheck(){
+        void CloseCheck__InCloseCheck(){
             checkoutService.OpenCheck();
 
             checkoutService.AddProduct(butter);
@@ -56,7 +56,7 @@ namespace SilpoBonusCore.Tests
         }
 
         [Fact]
-        void AddProduct_CheckPoints(){
+        void CloseCheck__CheckPoints(){
             checkoutService.OpenCheck();
 
             checkoutService.AddProduct(butter);
@@ -64,7 +64,33 @@ namespace SilpoBonusCore.Tests
 
             Check check = checkoutService.CloseCheck();
 
-            Assert.Equal(check.GetTotalPoints(), 40);
+            Assert.Equal(check.TotalPoints, 40);
+        }
+
+        [Fact]
+        void CloseCheck__AddOfferPoints(){
+            checkoutService.OpenCheck();
+
+            checkoutService.AddProduct(butter);
+            checkoutService.AddProduct(egg);
+
+            checkoutService.UseOffer(new GoodsOffer(8, 4));
+            Check check = checkoutService.CloseCheck();
+
+            Assert.Equal(check.TotalPoints, 44);
+        }
+
+        [Fact]
+        void CloseCheck__whenCostLessThanRequired__DontAddPoint(){
+            checkoutService.OpenCheck();
+
+            checkoutService.AddProduct(butter);
+            checkoutService.AddProduct(egg);
+
+            checkoutService.UseOffer(new GoodsOffer(40, 4));
+            Check check = checkoutService.CloseCheck();
+
+            Assert.Equal(check.TotalPoints, 40);
         }
     }
 }

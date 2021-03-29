@@ -5,6 +5,7 @@ namespace SilpoBonusCore
     public class Check
     {
         private List<Product> products;
+        public int TotalPoints { get; private set; }
 
         public Check()
         {
@@ -22,12 +23,12 @@ namespace SilpoBonusCore
             return totalCost;
         }
 
-        public int GetTotalPoints(){
-            return GetTotalCost() * 2;
-        }
-
         internal void AddProduct(Product product){
             products.Add(product);
+        }
+
+        internal void AddPoints(int points){
+            TotalPoints += points;
         }
     }
 }

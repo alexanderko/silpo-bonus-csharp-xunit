@@ -9,6 +9,7 @@ namespace SilpoBonusCore
 
         public void AddProduct(Product product){
             check.AddProduct(product);
+            check.AddPoints(product.Price * 2);
         }
 
         public Check CloseCheck(){
@@ -16,6 +17,12 @@ namespace SilpoBonusCore
             check = null;
 
             return temp;
+        }
+
+        public void UseOffer(GoodsOffer offer){
+            if(check.GetTotalCost() >= offer.MinCosts){
+                check.AddPoints(offer.Points);
+            }
         }
     }
 }
