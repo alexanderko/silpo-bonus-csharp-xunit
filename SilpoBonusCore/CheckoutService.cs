@@ -15,8 +15,16 @@ namespace SilpoBonusCore
         }
 
         public void AddProduct(Product product){
+<<<<<<< HEAD
             check.AddProduct(product);
             check.AddPoints(product.Price * 2);
+=======
+            if(check == null){
+                check = new Check();
+            }
+
+            check.AddProduct(product);
+>>>>>>> Add new offers and move UseOffers logic to abstract class
         }
 
         public Check CloseCheck(){
@@ -26,6 +34,7 @@ namespace SilpoBonusCore
             return temp;
         }
 
+<<<<<<< HEAD
         public void UseOffer(GoodsOffer offer){
             FactorByCategoryOffer fb = offer as FactorByCategoryOffer;
 
@@ -38,6 +47,10 @@ namespace SilpoBonusCore
                     check.AddPoints(offer.Points);
                 }
             }
+=======
+        public void UseOffer(Offer offer){
+            offer.Apply(check);
+>>>>>>> Add new offers and move UseOffers logic to abstract class
         }
     }
 }
